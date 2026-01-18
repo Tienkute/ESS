@@ -1,182 +1,184 @@
 # ESS - Embeddings Semantic Search 🔍
 
-Một hệ thống tìm kiếm ngữ nghĩa (Semantic Search) sử dụng **AI và Machine Learning** để tìm kiếm tài liệu dựa trên ý nghĩa thay vì chỉ từ khóa.
+A semantic search system using **AI and Machine Learning** to retrieve documents based on meaning rather than just keywords.
 
-## 📋 Mô tả dự án
+## 📋 Project Description
 
-Dự án này cung cấp các công cụ để:
-- **Tìm kiếm ngữ nghĩa**: Tìm kiếm dựa trên ý nghĩa của câu hỏi, không chỉ từ khóa
-- **Mã hóa văn bản**: Chuyển đổi văn bản thành vector số bằng AI
-- **So sánh độ tương tự**: Sử dụng cosine similarity để tìm kết quả phù hợp nhất
-- **API Server**: Cung cấp REST API cho các ứng dụng khác
-- **Hệ thống chat thông minh**: Hỗ trợ giao tiếp tự nhiên với lịch sử câu hỏi
+This project provides tools to:
 
-## 🎯 Tính năng chính
+- **Semantic Search**: Search based on the meaning of your query, not just keywords
+- **Text Encoding**: Convert text into numerical vectors using AI
+- **Similarity Comparison**: Use cosine similarity to find the most relevant results
+- **API Server**: Provide a REST API for other applications
+- **Smart Chat System**: Support natural conversation with query history
 
-✅ **Hỗ trợ đa ngôn ngữ** - Bao gồm Tiếng Việt  
-✅ **Tìm kiếm nhanh** - Sử dụng vector embedding  
-✅ **API RESTful** - Dễ tích hợp vào ứng dụng  
-✅ **Mô-đun hóa** - Code sạch, dễ bảo trì  
-✅ **Chat tương tác** - Giao diện dòng lệnh thân thiện
+## 🎯 Key Features
 
-## 📁 Cấu trúc dự án
+✅ **Multilingual Support** - Supports Vietnamese and 50+ languages  
+✅ **Fast Search** - Uses vector embeddings for speed  
+✅ **RESTful API** - Easy to integrate into applications  
+✅ **Modular Design** - Clean, maintainable code  
+✅ **Interactive Chat** - User-friendly command-line interface
+
+## 📁 Project Structure
 
 ```
 semantic_search_project/
-├── api.py           # FastAPI server cho tìm kiếm
-├── demo.py          # Ví dụ cơ bản về embedding
-├── search.py        # Module tìm kiếm ngữ nghĩa
-├── system.py        # Hệ thống chat thông minh với bộ nhớ
-├── requirements.txt # Các thư viện cần thiết
-└── README.md        # File này
+├── api.py           # FastAPI server for search
+├── demo.py          # Basic embedding example
+├── search.py        # Semantic search module
+├── system.py        # Smart chat system with memory
+├── requirements.txt # Required libraries
+└── README.md        # This file
 ```
 
-## 🚀 Cách sử dụng
+## 🚀 How to Use
 
-### 1. Cài đặt dependencies
+### 1. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-**Thư viện chính:**
+**Main Libraries:**
 - `fastapi` - Web framework
-- `sentence-transformers` - AI model cho embedding
-- `scikit-learn` - Cosine similarity
-- `numpy` - Xử lý mảng số
-- `uvicorn` - Server ASGI
+- `sentence-transformers` - AI model for embeddings
+- `scikit-learn` - Cosine similarity calculation
+- `numpy` - Numerical computing
+- `uvicorn` - ASGI server
 
-### 2. Chạy ví dụ đơn giản
+### 2. Run Basic Example
 
 ```bash
 python demo.py
 ```
 
-Output mong đợi:
+Expected output:
 ```
---- Đang tải mô hình AI... ---
-Thành công!
-Máy đã biến 2 câu văn thành vector có kích thước: (2, 384)
-Vector của câu đầu tiên trông như thế này (rút gọn): [-0.05... 0.12... ...]
+--- Loading AI model... ---
+Success!
+Converted 2 sentences into vectors with shape: (2, 384)
+Vector of the first sentence (truncated): [-0.05... 0.12... ...]
 ```
 
-### 3. Chạy tìm kiếm ngữ nghĩa
+### 3. Run Semantic Search
 
 ```bash
 python search.py
 ```
 
-Ví dụ:
+Example:
 ```
-Câu hỏi của bạn: Làm thế nào để lập trình?
---> Kết quả tìm thấy: "Cách cài đặt Python trên Windows rất dễ"
---> Độ chính xác: 0.6234 (Càng gần 1 càng chuẩn)
+Your question: How do I learn programming?
+--> Result found: "How to install Python on Windows"
+--> Accuracy: 0.6234 (Higher is better)
 ```
 
-### 4. Chạy hệ thống chat thông minh
+### 4. Run Smart Chat System
 
 ```bash
 python system.py
 ```
 
-Hệ thống sẽ:
-- Lưu lịch sử câu hỏi
-- Tự động phân loại câu hỏi (đơn giản vs phức tạp)
-- Tìm kiếm các tài liệu phù hợp
+The system will:
+- Save query history
+- Automatically classify queries
+- Find relevant documents
 
+Example:
 ```
-Bạn (Gõ câu hỏi): Cách nấu phở?
-[Memory] Đã nhớ 1 câu hỏi trong phiên này.
---> Kết quả tìm thấy: "Công thức nấu món phở bò Nam Định chuẩn vị"
---> Độ chính xác: 0.7891
+You (Enter question): How to cook pho?
+[Memory] Saved 1 question in this session.
+--> Result: "Traditional Vietnamese Pho recipe"
+--> Confidence: 0.7891
 
-Bạn (Gõ câu hỏi): exit
+You (Enter question): exit
 ```
 
-### 5. Chạy API Server
+### 5. Run API Server
 
 ```bash
 python -m uvicorn api:app --reload
 ```
 
-Sau đó truy cập:
+Access:
 - **Swagger UI**: http://localhost:8000/docs
 - **API Endpoint**: POST http://localhost:8000/search
 
-**Ví dụ request:**
+Example request:
 ```bash
 curl -X POST "http://localhost:8000/search" \
   -H "Content-Type: application/json" \
-  -d '{"text": "Cách cài đặt Python"}'
+  -d '{"text": "How to install Python"}'
 ```
 
-**Response:**
+Response:
 ```json
 {
   "status": "success",
-  "question": "Cách cài đặt Python",
-  "best_match": "Hướng dẫn cài đặt Python",
+  "question": "How to install Python",
+  "best_match": "Python installation guide",
   "score": 0.8654
 }
 ```
 
-## 🤖 Cách thức hoạt động
+## 🤖 How It Works
 
-### Embedding (Mã hóa văn bản)
+### Embedding (Text Encoding)
 ```
-Câu hỏi: "Cách nấu phở?"
+Question: "How to cook pho?"
          ↓
   Sentence Transformer
          ↓
-Vector: [0.12, -0.45, 0.67, ...]  (384 chiều)
+Vector: [0.12, -0.45, 0.67, ...] (384 dimensions)
 ```
 
-### Tìm kiếm
+### Search Process
 ```
-Query Vector → Cosine Similarity → So sánh với tất cả docs
+Query Vector → Cosine Similarity → Compare with all documents
               ↓
-          Tìm doc có score cao nhất
+          Find document with highest score
               ↓
-          Trả về kết quả tốt nhất
+          Return best result
 ```
 
-## 📊 Model AI được sử dụng
+## 📊 AI Models Used
 
-- **`paraphrase-multilingual-MiniLM-L12-v2`**: Hỗ trợ 50+ ngôn ngữ, kích thước nhẹ
-- **`all-MiniLM-L6-v2`**: Model Tiếng Anh tối ưu hóa
+- **`paraphrase-multilingual-MiniLM-L12-v2`**: Supports 50+ languages, lightweight
+- **`all-MiniLM-L6-v2`**: Optimized for English
 
-## 🔧 Công nghệ
+## 🔧 Technologies
 
 - **Python 3.8+**
 - **Sentence Transformers** (BERT-based)
 - **Scikit-learn** (Cosine Similarity)
 - **FastAPI** (REST API)
-- **NumPy** (Xử lý số)
+- **NumPy** (Numerical computing)
 
-## 📈 Cải thiện trong tương lai
+## 📈 Future Improvements
 
-- [ ] Lưu trữ documents trong database
-- [ ] Hỗ trợ upload file (PDF, TXT)
-- [ ] Fine-tune model cho domain cụ thể
-- [ ] Cache results để tối ưu hiệu suất
-- [ ] Thêm authentication cho API
-- [ ] Giao diện web (Frontend)
+- [ ] Store documents in a database
+- [ ] Support file uploads (PDF, TXT)
+- [ ] Fine-tune model for specific domains
+- [ ] Cache results for performance
+- [ ] Add API authentication
+- [ ] Create web frontend
 
 ## 📝 License
 
-MIT License - Tự do sử dụng cho các dự án cá nhân và thương mại.
+MIT License - Free for personal and commercial use.
 
-## 👤 Tác giả
+## 👤 Author
 
 **Tienkute** - [GitHub Profile](https://github.com/Tienkute)
 
-## 📞 Liên hệ & Hỗ trợ
+## 📞 Contact & Support
 
-- 📧 Email: [Liên hệ qua GitHub]
+- 📧 Email: [Contact via GitHub]
 - 🐛 Issues: [GitHub Issues](https://github.com/Tienkute/ESS/issues)
 
 ---
 
 **Happy Searching! 🚀**
 
-Nếu bạn thấy dự án này hữu ích, vui lòng cho ⭐ trên GitHub!
+If you find this project useful, please give it a ⭐ on GitHub!
